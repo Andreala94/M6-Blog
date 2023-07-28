@@ -10,42 +10,32 @@ import { Link } from "react-router-dom";
 const LastRelase = ({ posts }) => {
 
 
-
-
     useEffect(() => {
 
     }, []);
 
     return (
         <>
-
-            <Container className="d-flex mt-5 ms-5 ">
-                <Row>
-                    <Col className="d-flex  "
-                        md={6}
-                    >
-                        {
-                            posts && posts.map((post) => {
-                                return (
-                                    <CardPosts
-                                        cover={post.cover}
-                                        title={post.title}
-                                        category={post.category}
-                                    />
-                                )
-                            })
-                        }
-                    </Col>
+            <Container className="mt-5">
+                <Row className="d-flex flex-wrap">
+                    {posts &&
+                        posts.map((post) => (
+                            <Col key={post.id} md={3} lg={6} sm={3} className="mb-4">
+                                <CardPosts
+                                    cover={post.cover}
+                                    title={post.title}
+                                    category={post.category}
+                                />
+                            </Col>
+                        ))}
                 </Row>
 
+                <Container className="text-center mt-5">
+                    <Link to="/newpost">
+                        <p>New Post</p>
+                    </Link>
+                </Container>
             </Container>
-            <Container className="text-center mt-5">
-                <Link to="/newpost" >
-                    <p>New Post</p>
-                </Link>
-
-            </Container>
-
         </>
     )
 }

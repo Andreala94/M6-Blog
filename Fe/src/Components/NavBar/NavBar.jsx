@@ -11,6 +11,7 @@ import '../NavBar/NavBar.css';
 
 function NavBar () {
   return (
+    <>
     <Navbar expand="lg" className="navbar ">
       <Container fluid>
       <Image className='logo ms-4' src="https://img.favpng.com/19/16/16/computer-icons-blogger-logo-png-favpng-B7KarAb7aWnaBXeV9dtiJcVjb.jpg" alt="Logo" />
@@ -31,10 +32,13 @@ function NavBar () {
               aria-label="Search"
             />
             <Button className="bottone">Cerca</Button>
+
+            <Button className='login ms-2'>Login</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    </>
   )
 }
 

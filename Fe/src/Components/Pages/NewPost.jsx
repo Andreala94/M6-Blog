@@ -36,12 +36,14 @@ export const NewPost = () => {
         try {
             const response = await fetch('http://localhost:5050/posts/create', {
                 method: 'POST',
-                
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                     category: categoryValue,
                     title: titleValue,
                     cover: coverValue,
-                   
+
                     author: authorValue,
                     content: contentValue
                 })
