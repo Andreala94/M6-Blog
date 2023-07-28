@@ -56,13 +56,13 @@ export const NewPost = () => {
     }
 
 
-
+//? gestire un input di tipo file (enctype)
 
 return (
-    <>
+    <>    
         <NavBar />
-
-        <Form className='m-5' encType='multipart/from-data' onSubmit={handleSubmit}>  //? gestire un input di tipo file (enctype)
+        
+        <Form className='m-5' encType='multipart/from-data' onSubmit={handleSubmit}>  
             <Form.Group controlId="formTitle">
                 <Form.Label>Titolo</Form.Label>
                 <Form.Control type="text" placeholder="Inserisci il titolo" onChange={(event) => setTitleValue(event.target.value)} />
