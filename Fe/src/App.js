@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from './Components/Pages/HomePage';
 import { ErrorPage } from './Components/Pages/ErrorPage';
 import { NewPost } from './Components/Pages/NewPost';
-import Login from './Components/Pages/Login';
+import  Login from './Components/Pages/Login';
 import ProtectedRoutes from './middlewares/ProtectedRoutes';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
        <Routes>
          <Route>
          <Route exact path="/" element={<HomePage />}/>
-         <Route exact path="/login" element={<Login />}/>
+         {/* <Route exact path="/login" element={<Login />}/> */}
          <Route exact path="/newpost" element={<NewPost />}/> 
          <Route element={<ProtectedRoutes />}>
           
@@ -28,10 +28,9 @@ function App() {
 
 
        </Routes>
-    
-    
-    
     </BrowserRouter>
+
+    <Login />
     
     </>
   );
