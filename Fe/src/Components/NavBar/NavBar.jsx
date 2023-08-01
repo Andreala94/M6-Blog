@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Modal } from 'react-bootstrap';
+import { Modal, Link } from 'react-bootstrap';
 import { Image } from 'react-bootstrap';
 import '../NavBar/NavBar.css';
 import Login from '../Pages/Login';
@@ -69,10 +69,16 @@ const NavBar = () => {
               <Form.Control type="password" placeholder="Inserisci la tua password" />
             </Form.Group>
           </Form>
+         
           </Modal.Body>
+         
           <Modal.Footer>
             <Button variant="primary" onClick={handleCloseModal}> Chiudi </Button>
+            
+
             </Modal.Footer>
+            
+
         </Modal.Header>
 
       </Modal>

@@ -12,14 +12,27 @@ export const NewPost = () => {
     const [readTimeUnit, setReadTimeUnit] = useState('')
 
 
-    const uploadCover = async (file) =>{
-        const coverData = new FormData();
-        coverData.append("cover", file);
+
+
+    const handleFileChange = (e) =>{
+        setCoverValue(e.target.files[0])
+    }
+
+
+    
+
+    const uploadFile = async ( file) =>{
+        const fileData = new FormData();
+        fileData.append('cover', file)
 
         try {
-            
+            const response =  await fetch('http://localhost:5050/posts/internalUpload',{
+                method: 'POST',
+                body: fileData
+            });
+            return await response.json();
         } catch (error) {
-            
+            console.error('File uploads error!');
         }
     }
     const handleSubmit = async (event) => {
@@ -32,30 +45,38 @@ export const NewPost = () => {
         setContentValue(event.target.value);
         // setReadTimeUnit(event.target.value);
         // setReadTimeValue(event.target.value);
+        setCoverValue(event.target.value);
 
-        try {
-            const response = await fetch('http://localhost:5050/posts/create', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
+        if (coverValue) {
+			try {
+				const uploadedFile = await uploadFile(coverValue);
+				console.log(uploadedFile);
+				
+				const postFormData = {
                     category: categoryValue,
-                    title: titleValue,
-                    cover: coverValue,
-
+                    title: titleValue,     
+                    readTime: readTimeValue,
                     author: authorValue,
-                    content: contentValue
-                })
+                    content: contentValue,
+					cover: uploadedFile.cover,
+				};
 
-            });
+				const response = await fetch("http://localhost:5050/posts/create", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(postFormData),
+				});
+				return response.json();
+			} catch (error) {
+				console.error("Failed to save the post");
+			}
+		} else {
+			console.error("Please select at least one file to upload");
+		}
+	};
 
-            
-
-        } catch (error) {
-            throw new Error('Errore nella richiesta');
-        }
-    }
 
 
 //? gestire un input di tipo file (enctype)
@@ -64,7 +85,7 @@ return (
     <>    
         <NavBar />
         
-        <Form className='m-5' encType='multipart/from-data' onSubmit={handleSubmit}>  
+        <Form className='m-5' encType='multipart/form-data' onSubmit={handleSubmit}>  
             <Form.Group controlId="formTitle">
                 <Form.Label>Titolo</Form.Label>
                 <Form.Control type="text" placeholder="Inserisci il titolo" onChange={(event) => setTitleValue(event.target.value)} />
@@ -82,7 +103,7 @@ return (
 
             <Form.Group className='mt-3'>
                 <Form.Label>Carica un'immagine</Form.Label>
-                <Form.Control type="file" />
+                <Form.Control type="file" onChange={handleFileChange} />
             </Form.Group>
 
             <Form.Group controlId="formContent" className='mt-3'>
@@ -91,7 +112,7 @@ return (
             </Form.Group>
 
             <Button className='ms-5' type='submit'>
-                Crea
+                Crea Post
             </Button>
         </Form>
        

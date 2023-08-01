@@ -31,9 +31,14 @@ const LastRelase = ({ posts }) => {
                 </Row>
 
                 <Container className="text-center mt-5">
-                    <Link to="/newpost">
+                    <Link  to="/newpost">
                         <p>New Post</p>
                     </Link>
+                    <Link to="/form">
+                        <p>Registarti</p>
+                    </Link>
+            
+
                 </Container>
             </Container>
         </>

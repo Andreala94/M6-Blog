@@ -6,6 +6,7 @@ import { ErrorPage } from './Components/Pages/ErrorPage';
 import { NewPost } from './Components/Pages/NewPost';
 import  Login from './Components/Pages/Login';
 import ProtectedRoutes from './middlewares/ProtectedRoutes';
+import FormAuthor from './Components/Pages/FormAuthor';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
          <Route exact path="/" element={<HomePage />}/>
          {/* <Route exact path="/login" element={<Login />}/> */}
          <Route exact path="/newpost" element={<NewPost />}/> 
+         <Route exact path="/form" element={<FormAuthor />}/>
          <Route element={<ProtectedRoutes />}>
           
             //? solo se siamo loggati possiamo creare un nuovo post

@@ -4,9 +4,10 @@ const PostsModel = require('../models/postModel');
 const AuthorModelSchema = require("./author");
 const authorsModel = require('../models/authorsModel');
 const multer = require("multer");
-const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const veryFileToken = require('../middlewares/veryFileToken');
+const crypto = require('crypto'); // libreria presente in nodejs che genera un id univoco
 
 
 
@@ -26,13 +27,13 @@ const post = express.Router()
 // funzione di default 
 const internalStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads')
+        cb(null, 'uploads') // cartella uploads dove deve salvare i file
     },
 
     filename: (req, file, cb) => {
-        const uniqueSuffix = `${new Date().now()}-${crypto.randomUUID()}`;
-        const fileExt = file.originalname.split(".").pop(); 
-        cb(null, `${file.originalname}-${uniqueSuffix}.${fileExt}`); 
+        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+		const fileExtension = file.originalname.split(".").pop();
+		cb(null, `${file.fieldname}-${uniqueSuffix}.${fileExtension}`);
     }
 });
 
@@ -42,11 +43,12 @@ const uploads = multer({ storage: internalStorage }); // caricarsi quello storag
 //! POST dell'IMG
 post.post('/posts/internalUpload', uploads.single('cover'), async (req, res) =>{
 
-    const imageURL= req.protocol + "://" + req.get(host)  //salvare in mongoose tutto l url generato
+    const imageURL= req.protocol + "://" + req.get("host")  //salvare in mongoose tutto l url generato
     const imageName = req.file.filename;
 
     try {
-        res.status(200).send({ cover: `${imageURL}/uploads/${imageName}` })
+        res.status(200).send({  cover:  `${imageURL}/uploads/${imageName}`  })
+        
     } catch (error) {
         res.status(500).send({
             statusCode: 500,
@@ -147,11 +149,12 @@ post.get("/posts",    async (request, response) => {
 
 
 //! POST 
-post.post('/posts/create', async (req, res) => { 
+post.post('/posts/create',  async (req, res) =>  { 
 
     const user = await authorsModel.findOne({_id: req.body.author});
 
-    console.log(req.body);
+
+    
 
     if(!user){
         return res.status(404).send({
@@ -166,7 +169,7 @@ post.post('/posts/create', async (req, res) => {
 
         category: req.body.category,
         title: req.body.title,
-        cover: req.body.cover,
+        cover:  req.body.cover ,
         readTime: req.body.readTime,
         author: user._id,
         content: req.body.content,

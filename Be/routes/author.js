@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const AuthorModel = require('../models/authorsModel');
-
+const Avatar = require('../middlewares/uploadAvatar')
 const author = express.Router()
 
 
@@ -25,14 +25,14 @@ author.get("/authors", async (request, response) => {
 
 })
 
-author.post('/authors', async (req, res) => {
+author.post('/authors', Avatar.single("avatar"), async (req, res) => {
 
     const newAuthor = new AuthorModel({
         name: req.body.name,
 		surname: req.body.surname,
 		email: req.body.email,
 		dob: req.body.dob,
-		avatar: req.body.avatar,
+		avatar: req.file.path,
     })
 
     try {
