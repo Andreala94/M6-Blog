@@ -20,11 +20,12 @@ const LastRelase = ({ posts }) => {
                 <Row className="d-flex flex-wrap">
                     {posts &&
                         posts.map((post) => (
-                            <Col key={post.id} md={3} lg={6} sm={3} className="mb-4">
+                            <Col key={post.id} md={6} lg={3} sm={3} className="mb-4">
                                 <CardPosts
                                     cover={post.cover}
                                     title={post.title}
                                     category={post.category}
+                                    content={post.content}
                                 />
                             </Col>
                         ))}

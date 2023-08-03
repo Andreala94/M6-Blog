@@ -12,7 +12,7 @@ Content-Type: application/json
     "surname": "Lauro",
     "email": "andrea@gmail.com",
     "dob": "28/01/1994",
-   
+    "password":"mamma",
     "avatar": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000"
 }
 

@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 
+const minlength = [
+	8,
+	"The value of path `{PATH}` (`{VALUE}`) is shorter than the minimum allowed length ({MINLENGTH}).",
+];
 const AuthorModelSchema = new mongoose.Schema(
 
   {
@@ -10,6 +14,12 @@ const AuthorModelSchema = new mongoose.Schema(
     surname: {
       type: String,
       required: true,
+    },
+    password: {
+      type: String,
+      required: [
+        true,
+        "Password is required and must be at least of 8 characters."]
     },
     email: {
       type: String,
@@ -31,8 +41,8 @@ const AuthorModelSchema = new mongoose.Schema(
         default: [],
       }
     ]
-    
-},
+
+  },
   {
     timestamps: true,
     strict: true,

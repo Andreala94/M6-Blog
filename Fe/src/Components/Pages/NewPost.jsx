@@ -22,11 +22,11 @@ export const NewPost = () => {
     
 
     const uploadFile = async ( file) =>{
-        const fileData = new FormData();
+        const fileData = new FormData(); //metodo per appendere file data in un form
         fileData.append('cover', file)
 
         try {
-            const response =  await fetch('http://localhost:5050/posts/internalUpload',{
+            const response =  await fetch('http://localhost:5050/posts/cloudUpload',{
                 method: 'POST',
                 body: fileData
             });
@@ -51,6 +51,7 @@ export const NewPost = () => {
 			try {
 				const uploadedFile = await uploadFile(coverValue);
 				console.log(uploadedFile);
+
 				
 				const postFormData = {
                     category: categoryValue,
@@ -85,7 +86,10 @@ return (
     <>    
         <NavBar />
         
-        <Form className='m-5' encType='multipart/form-data' onSubmit={handleSubmit}>  
+        <Form className='m-5'
+         encType='multipart/form-data'
+          onSubmit={handleSubmit}
+          >  
             <Form.Group controlId="formTitle">
                 <Form.Label>Titolo</Form.Label>
                 <Form.Control type="text" placeholder="Inserisci il titolo" onChange={(event) => setTitleValue(event.target.value)} />
@@ -111,7 +115,7 @@ return (
                 <Form.Control as="textarea" rows={4} placeholder="Inserisci il contenuto" onChange={(event) => setContentValue(event.target.value)} />
             </Form.Group>
 
-            <Button className='ms-5' type='submit'>
+            <Button className='ms-1 mt-5' type='submit'>
                 Crea Post
             </Button>
         </Form>

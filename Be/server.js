@@ -12,6 +12,7 @@ const authorRoute = require('./routes/author')
 const resourcesRoute = require('./routes/resources')
 const loginRoute = require('./routes/login');
 // const veryFileToken = require("./middlewares/veryFileToken");
+const githubRoute = require("./routes/ghithubRoute")
 
 
 const app = express();
@@ -29,11 +30,13 @@ app.use('./uploads', express.static('uploads'))
 
 
 
+
 //import delle routes
 app.use("/", postsRoute);
 app.use("/", authorRoute);
 app.use("/", resourcesRoute);
 app.use("/", loginRoute);
+app.use("/", githubRoute);
 
 
 

@@ -22,12 +22,18 @@ const Login = () => {
     const handleLogout = () =>{
         setIsLoggedIn(false)
     }
+// Funziona
+    const handleLoginWithGithub = () =>{
+         window.location.href = "http://localhost:5050/auth/github";
+    }
 
     if (isLoggedIn){
         return(
             <div>
                 <h1>Benvenuto/a, {username}!</h1>
                 <Button onClick={handleLogout}>Logout</Button> 
+                
+                <Button type="submit" onClick={handleLoginWithGithub}>Login with GitHub</Button> 
             </div>
         )
     }

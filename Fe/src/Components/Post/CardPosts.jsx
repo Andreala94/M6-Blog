@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
-const CardPosts = ({ cover, _id, title, category }) => {
+const CardPosts = ({ cover, _id, title, category, content}) => {
 
 
   return (
@@ -18,6 +18,7 @@ const CardPosts = ({ cover, _id, title, category }) => {
             <Card.Body>
               <Card.Title>{title}</Card.Title>
               <Card.Title>{category}</Card.Title>
+              <Card.Title>{content}</Card.Title>
 
               <Button variant="primary">Go somewhere</Button>
             </Card.Body>

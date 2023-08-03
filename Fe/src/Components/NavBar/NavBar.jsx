@@ -11,7 +11,7 @@ import '../NavBar/NavBar.css';
 import Login from '../Pages/Login';
 
 
-const NavBar = () => {
+const NavBar = ( { HomePage} ) => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -26,14 +26,14 @@ const NavBar = () => {
 
       <Navbar expand="lg" className="navbar ">
         <Container fluid>
-          <Image className='logo ms-4' src="https://img.favpng.com/19/16/16/computer-icons-blogger-logo-png-favpng-B7KarAb7aWnaBXeV9dtiJcVjb.jpg" alt="Logo" />
+          <Image  className='logo ms-4' src="https://img.favpng.com/19/16/16/computer-icons-blogger-logo-png-favpng-B7KarAb7aWnaBXeV9dtiJcVjb.jpg" alt="Logo" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link className='blog' href="#action1">Blog Andrea</Nav.Link>
+              <Nav.Link className='blog' href="#action1" >Blog Andrea</Nav.Link>
 
             </Nav>
             <Form className="d-flex">
@@ -46,7 +46,7 @@ const NavBar = () => {
               <Button className="bottone">Cerca</Button>
 
 
-              <Button className='login ms-2' onClick={showModal}>Login</Button>
+              <Button className='login ms-2 ' onClick={showModal}>Login</Button>
             </Form>
           </Navbar.Collapse>
         </Container>

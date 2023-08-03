@@ -14,14 +14,23 @@ const crypto = require('crypto'); // libreria presente in nodejs che genera un i
 
 const post = express.Router()
 
-// const cloudStorage = new CloudinaryStorage({
+cloudinary.config({ 
+    cloud_name: 'dsmb3mzsp', 
+    api_key: '871683394519529', 
+    api_secret: 'Wss9FCpQptIISb-boHhBFiw3nQM' 
+  });
 
-//     cloudinary.config({ 
-//         cloud_name: 'dsmb3mzsp', 
-//         api_key: '871683394519529', 
-//         api_secret: 'Wss9FCpQptIISb-boHhBFiw3nQM' 
-//       })
-// });
+
+
+const cloudStorage = new CloudinaryStorage({
+     cloudinary: cloudinary,
+     params: {
+        folder: 'testEpicode',
+        format: async ( req, file, cb)=> 'png',
+        public_id: (req, file) => file.name,
+     }
+    
+});
 
 
 // funzione di default 
@@ -38,15 +47,17 @@ const internalStorage = multer.diskStorage({
 });
 
 const uploads = multer({ storage: internalStorage }); // caricarsi quello storage
+const cloudUpload = multer ({ storage: cloudStorage }) // caricare immagine incloud
 
 
 //! POST dell'IMG
 post.post('/posts/internalUpload', uploads.single('cover'), async (req, res) =>{
 
     const imageURL= req.protocol + "://" + req.get("host")  //salvare in mongoose tutto l url generato
-    const imageName = req.file.filename;
+    
 
     try {
+        const imageName = req.file.filename;
         res.status(200).send({  cover:  `${imageURL}/uploads/${imageName}`  })
         
     } catch (error) {
@@ -57,6 +68,18 @@ post.post('/posts/internalUpload', uploads.single('cover'), async (req, res) =>{
         });
     }
 })
+//! post IMG in CLOUD
+post.post("/posts/cloudUpload", cloudUpload.single("cover"), async (req, res) => {
+		try {
+			res.status(200).json({ cover: req.file.path });
+		} catch (error) {
+			console.error("File upload failed:", error);
+			res.status(500).json({ error: "File upload failed" });
+		}
+	}
+);
+
+
 
 
 //! GET TITLE
