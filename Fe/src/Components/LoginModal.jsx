@@ -10,6 +10,8 @@ const LoginModal = ({ modalVisible, setModalVisible, onSubmit, showModal }) => {
     const handleCloseModal = () => {
         setModalVisible(false)
     }
+
+ 
     return (
         <Modal show={modalVisible} onHide={handleCloseModal}>
             <Modal.Header closeButton>
@@ -51,8 +53,7 @@ const LoginModal = ({ modalVisible, setModalVisible, onSubmit, showModal }) => {
 
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleCloseModal}>
-                        {' '}
-                        Chiudi{' '}
+                         Chiudi
                     </Button>
                 </Modal.Footer>
             </Modal.Header>

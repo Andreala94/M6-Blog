@@ -5,7 +5,6 @@ import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import { Modal, Link } from 'react-bootstrap'
 import { Image } from 'react-bootstrap'
 import '../NavBar/NavBar.css'
 import LoginModal from '../LoginModal'
@@ -14,14 +13,15 @@ import { FormDataContext } from '../../Context/FormDataContex'
 const NavBar = ({ HomePage }) => {
     // apertura e chiusura Modale
     const [modalVisible, setModalVisible] = useState(false)
-    const { formData } = useContext(FormDataContext)
+    const { formData } = useContext(FormDataContext) //context passata in index per prendere i dati dei login
 
     console.log(formData)
-    
+
     const showModal = () => {
         setModalVisible(true)
     }
-
+    
+// fetch per login
     const onSubmit = async (e) => {
         e.preventDefault()
 
@@ -32,11 +32,16 @@ const NavBar = ({ HomePage }) => {
                 headers: { 
                   "Content-Type": "application/json"
                 }
+                
             })
 
             return await response.json()
+              // localStorage.setItem('userLoggedIn',JSON.stringify(response.data.token) )
+            
+            
+           
         } catch (error) {
-            console.error('File uploads error!')
+            console.error('Errore nella richiesta', error)
         }
     }
 

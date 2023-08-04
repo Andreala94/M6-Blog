@@ -22,7 +22,7 @@ function App() {
                         <Route exact path="/success" element={<Success />} />
                         <Route element={<ProtectedRoutes />}>
                             //? solo se siamo loggati possiamo creare un nuovo
-                            post
+                            
                         </Route>
 
                         <Route path="*" element={<ErrorPage />} />

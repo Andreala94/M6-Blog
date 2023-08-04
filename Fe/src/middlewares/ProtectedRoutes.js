@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import jwtDecode from 'jwt-decode'
-import Login from '../Components/Pages/Login'
+import LoginModal from '../Components/LoginModal'
+import NavBar from '../Components/NavBar/NavBar'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 const auth = () => {
-    return JSON.parse(localStorage.getItem('userLoggedIn'))
+    return JSON.parse(localStorage.getItem('userLoggedIn')) // ci ristetuisce un booleano 
 }
 
 //! decodifica la sessione  ( cioe il token)
@@ -30,7 +31,7 @@ const ProtectedRoutes = () => {
     const isAuthorized = auth()
     const session = useSession()
 
-    return isAuthorized ? <Outlet /> : <Login />
+    return isAuthorized ? <Outlet /> : <LoginModal />
 }
 
 export default ProtectedRoutes
