@@ -1,42 +1,40 @@
-import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
-
+import React, { useState } from 'react'
+import { Modal, Button } from 'react-bootstrap'
 
 const Login = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     const handleLogin = () => {
-        const isValidUser = username === '' && password === '';
+        const isValidUser = username === '' && password === ''
 
-        if(isValidUser){
+        if (isValidUser) {
             setIsLoggedIn(true)
-        }else{
-            alert ('Email o password sono errati!')
+        } else {
+            alert('Email o password sono errati!')
         }
-
     }
 
-    const handleLogout = () =>{
+    const handleLogout = () => {
         setIsLoggedIn(false)
     }
-// Funziona
-    const handleLoginWithGithub = () =>{
-         window.location.href = "http://localhost:5050/auth/github";
+    // Funziona
+    const handleLoginWithGithub = () => {
+        window.location.href = 'http://localhost:5050/auth/github'
     }
 
-    if (isLoggedIn){
-        return(
+    if (isLoggedIn) {
+        return (
             <div>
                 <h1>Benvenuto/a, {username}!</h1>
-                <Button onClick={handleLogout}>Logout</Button> 
-                
-                <Button type="submit" onClick={handleLoginWithGithub}>Login with GitHub</Button> 
+                <Button onClick={handleLogout}>Logout</Button>
+
+                <Button type="submit" onClick={handleLoginWithGithub}>
+                    Login with GitHub
+                </Button>
             </div>
         )
     }
-
 }
- export default Login
+export default Login

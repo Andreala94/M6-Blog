@@ -1,17 +1,16 @@
-.logo{
+.logo {
     width: 4.5rem;
     height: 3rem;
- }
+}
 
-.blog{
-    font-weight:bold;
+.blog {
+    font-weight: bold;
     font-size: large;
-    
 }
-.navbar{
-   background-color:darkslateblue
+.navbar {
+    background-color: darkslateblue;
 }
 
-.bottone{
+.bottone {
     background-color: coral;
 }

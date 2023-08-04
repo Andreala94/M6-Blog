@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const AuthorModel = require('../models/authorsModel');
 const Avatar = require('../middlewares/uploadAvatar')
 const author = express.Router()
+const bcrypt = require("bcrypt")
 
 
 author.get("/authors", async (request, response) => {
@@ -26,13 +27,18 @@ author.get("/authors", async (request, response) => {
 })
 
 author.post('/authors', Avatar.single("avatar"), async (req, res) => {
+  const salt = await bcrypt.genSalt(10)
+
+  const cryptPassword = await bcrypt.hash(req.body.password, salt)
+
 
     const newAuthor = new AuthorModel({
         name: req.body.name,
 		surname: req.body.surname,
+        password: cryptPassword,
 		email: req.body.email,
 		dob: req.body.dob,
-		avatar: req.file.path,
+		avatar: req.body.avatar,
     })
 
     try {
