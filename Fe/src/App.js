@@ -7,7 +7,7 @@ import { NewPost } from './Components/Pages/NewPost'
 import Login from './Components/Pages/Login'
 import ProtectedRoutes from './middlewares/ProtectedRoutes'
 import FormAuthor from './Components/Pages/FormAuthor'
-import { Success } from './Components/Pages/Success'
+import Success from './Components/Pages/Success'
 
 function App() {
     return (
@@ -17,12 +17,13 @@ function App() {
                     <Route>
                         <Route exact path="/" element={<HomePage />} />
                         {/* <Route exact path="/login" element={<Login />}/> */}
-                        <Route exact path="/newpost" element={<NewPost />} />
-                        <Route exact path="/form" element={<FormAuthor />} />
-                        <Route exact path="/success" element={<Success />} />
+                        
+                        <Route  path="/form" element={<FormAuthor />} />
+                        <Route  path="/success/:token" element={<Success />} />1
+
                         <Route element={<ProtectedRoutes />}>
                             //? solo se siamo loggati possiamo creare un nuovo
-                            
+                            <Route  path="/newpost" element={<NewPost />} />
                         </Route>
 
                         <Route path="*" element={<ErrorPage />} />

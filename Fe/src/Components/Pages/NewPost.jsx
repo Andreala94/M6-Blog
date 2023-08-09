@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import NavBar from '../NavBar/NavBar'
+import { useNavigate } from "react-router-dom"
+
 
 export const NewPost = () => {
+    const navigate = useNavigate();
+
     const [titleValue, setTitleValue] = useState('')
     const [authorValue, setAuthorValue] = useState('')
     const [categoryValue, setCategoryValue] = useState('')
@@ -28,6 +32,7 @@ export const NewPost = () => {
                 }
             )
             return await response.json()
+           
         } catch (error) {
             console.error('File uploads error!')
         }
@@ -68,6 +73,7 @@ export const NewPost = () => {
                     }
                 )
                 return response.json()
+                .then((response)=> navigate("/homepage"))
             } catch (error) {
                 console.error('Failed to save the post')
             }

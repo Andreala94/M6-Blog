@@ -3,7 +3,8 @@ const github = express.Router();
 const passport = require("passport");
 const session = require("express-session");
 const jwt = require("jsonwebtoken");
-const GithubStragegy = require("passport-github2");
+const GithubStrategy = require("passport-github2");
+
 require("dotenv").configDotenv();
 
 github.use(
@@ -26,7 +27,7 @@ passport.deserializeUser((user, done) => {
 });
 
 passport.use(
-    new GithubStragegy(
+    new GithubStrategy(
         {
             clientID: process.env.GITHUB_CLIENT_ID,
             clientServer: process.env.GITHUB_CLIENT_SECRET,
@@ -38,24 +39,18 @@ passport.use(
     )
 );
 
-github.get('/auth/github', passport.authenticate("github", { scope: ["user:email"] })), (req, res) =>{
-    const redirectUrl = `http://localhost:5050/success?user=${encodeURIComponent(
-        JSON.stringify(req.user)
-    )}`;
-
+github.get('/auth/github', passport.authenticate("github", { scope: ["user:email"] }), (req, res) =>{
+    const redirectUrl = `http://localhost:5050/success/${encodeURIComponent(JSON.stringify(req.user))}`;
     res.redirect(redirectUrl);
-};
+});
 
-github.get('/auth/github/callback', passport.authenticate("github", { failureRedirect: "/"})), (req, res) =>{
+github.get('/auth/github/callback', passport.authenticate("github", { failureRedirect: "/" }), (req, res) =>{
     const { user } = req;
-    
     const token = jwt.sign(user, process.env.JWT_SECRET);
-    const redirectUrl = `http://localhost:5050/success?user=${encodeURIComponent(
-        token
-    )}`;
-
+    const redirectUrl = `http://localhost:5050/success/${encodeURIComponent(token)}`;
     res.redirect(redirectUrl);
-};
+});
+
 
 github.get("/success", ( req, res)=>{
     res.redirect("http://localhost:5050/homepage");

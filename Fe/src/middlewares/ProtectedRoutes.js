@@ -14,7 +14,7 @@ const useSession = () => {
     const session = auth()
     const decodeSession = session ? jwtDecode(session) : null
 
-    const navigate = useNavigate()
+    const navigate = useNavigate() // spedire l'utente da "qualche parte"
 
     useEffect(() => {
         if (!session) {
@@ -26,12 +26,16 @@ const useSession = () => {
 
     return decodeSession
 }
-
+// 
 const ProtectedRoutes = () => {
-    const isAuthorized = auth()
+    const isAuthorized = auth() // controlla se siamo autorizzati e ti salva il token con la funzione di sopra
     const session = useSession()
 
-    return isAuthorized ? <Outlet /> : <LoginModal />
+    return isAuthorized ? <Outlet /> : <LoginModal /> 
+    
+    // se siamo autorizzati mostra il componente figlio che abbiamo richiesto (cioè outlet sarebbe qualcosa che noi abbiamo richiesto 
+    // dentro il nostro componente di verifica "proddectRoute" es nel nostro caso la rotta "newpost") altrimenti ci mandi nella pagina login
+    
 }
 
 export default ProtectedRoutes

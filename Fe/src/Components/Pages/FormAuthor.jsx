@@ -35,6 +35,9 @@ function FormAuthor() {
         } catch (error) {}
     }
 
+    const saveUser = () =>{
+        localStorage.setItem('formData', JSON.stringify(FormData))
+    }
     return (
         <Form>
             <Form.Group className="mb-3" controlId="formGroupEmail">

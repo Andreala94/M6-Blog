@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Modal, Form, Button } from 'react-bootstrap'
 import { FormDataContext } from '../Context/FormDataContex'
 
+
 const LoginModal = ({ modalVisible, setModalVisible, onSubmit, showModal }) => {
     const { formData, setFormData } = useContext(FormDataContext)
 
@@ -10,8 +11,9 @@ const LoginModal = ({ modalVisible, setModalVisible, onSubmit, showModal }) => {
     const handleCloseModal = () => {
         setModalVisible(false)
     }
-
- 
+    const handleLoginWithGithub = () => {
+        window.location.href = 'http://localhost:5050/auth/github'
+    }
     return (
         <Modal show={modalVisible} onHide={handleCloseModal}>
             <Modal.Header closeButton>
@@ -48,7 +50,11 @@ const LoginModal = ({ modalVisible, setModalVisible, onSubmit, showModal }) => {
                             />
                         </Form.Group>
                         <Button type="submit">Login</Button>
+                        
                     </Form>
+                    <Button 
+                    onClick={handleLoginWithGithub}
+                    type="submit"className='bg-black rounded text-white'>Login with GitHub</Button>
                 </Modal.Body>
 
                 <Modal.Footer>

@@ -10,16 +10,19 @@ import '../NavBar/NavBar.css'
 import LoginModal from '../LoginModal'
 import { FormDataContext } from '../../Context/FormDataContex'
 
+
 const NavBar = ({ HomePage }) => {
     // apertura e chiusura Modale
     const [modalVisible, setModalVisible] = useState(false)
     const { formData } = useContext(FormDataContext) //context passata in index per prendere i dati dei login
 
-    console.log(formData)
+    
 
     const showModal = () => {
         setModalVisible(true)
     }
+    
+ 
     
 // fetch per login
     const onSubmit = async (e) => {
@@ -34,9 +37,12 @@ const NavBar = ({ HomePage }) => {
                 }
                 
             })
+            
+            const data =  await response.json()
+           
+            localStorage.setItem('userLoggedIn',JSON.stringify(data.token) )
 
-            return await response.json()
-              // localStorage.setItem('userLoggedIn',JSON.stringify(response.data.token) )
+            return data
             
             
            
@@ -44,6 +50,7 @@ const NavBar = ({ HomePage }) => {
             console.error('Errore nella richiesta', error)
         }
     }
+    
 
     return (
         <>
@@ -87,6 +94,7 @@ const NavBar = ({ HomePage }) => {
                     modalVisible={modalVisible}
                     onSubmit={onSubmit}
                     showModal={showModal}
+                   
                 />
             )}
         </>
