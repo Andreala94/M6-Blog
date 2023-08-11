@@ -26,8 +26,8 @@ author.get("/authors", async (request, response) => {
 
 })
 
-author.post('/authors', Avatar.single("avatar"), async (req, res) => {
-  const salt = await bcrypt.genSalt(10)
+author.post('/register/authors', Avatar.single("avatar"), async (req, res) => {
+  const salt = await bcrypt.genSalt(10) // per scegliere complessità algoritmo di protezione password.
 
   const cryptPassword = await bcrypt.hash(req.body.password, salt)
 

@@ -12,15 +12,10 @@ import useSession from "../../middlewares/ProtectedRoutes"
     // const urlParams = new URLSearchParams(location.search) //legge quello che c'è nella barra degli indirizzi
     // const token = urlParams.get("token") // se e cosa c'è con la chiave token
 
-    // const saveUserToLocalStorage = (token) => {
-    //     if (token) {
-    //         localStorage.setItem('userLoggedIn', JSON.stringify(token))
-    //     }
-    // }
-
     const saveUserToLocalStorage = () => {
         localStorage.setItem('userLoggedIn', JSON.stringify(token))
     }
+
     const session = useSession();
 
 	useEffect(() => {

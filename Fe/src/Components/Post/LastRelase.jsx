@@ -3,6 +3,7 @@ import CardPosts from './CardPosts'
 import { Col, Container, Row, Button } from 'react-bootstrap'
 import { NewPost } from '../Pages/NewPost'
 import { Link } from 'react-router-dom'
+import { nanoid } from 'nanoid'
 
 const LastRelase = ({ posts }) => {
     useEffect(() => {}, [])
@@ -21,6 +22,7 @@ const LastRelase = ({ posts }) => {
                                 className="mb-4"
                             >
                                 <CardPosts
+                                    key={nanoid}
                                     cover={post.cover}
                                     title={post.title}
                                     category={post.category}

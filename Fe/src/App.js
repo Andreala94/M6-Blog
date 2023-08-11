@@ -19,7 +19,7 @@ function App() {
                         {/* <Route exact path="/login" element={<Login />}/> */}
                         
                         <Route  path="/form" element={<FormAuthor />} />
-                        <Route  path="/success/:token" element={<Success />} />1
+                        <Route  path="/success/:token" element={<Success />} />
 
                         <Route element={<ProtectedRoutes />}>
                             //? solo se siamo loggati possiamo creare un nuovo
