@@ -31,7 +31,7 @@ passport.use(
     new GithubStrategy(
         {
             clientID: process.env.GITHUB_CLIENT_ID,
-            clientServer: process.env.GITHUB_CLIENT_SECRET,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET,
             callbackURL: process.env.GITHUB_CALLBACK_URL,
         },
         (accessToken, refreshToken, profile, done) =>{
@@ -41,7 +41,8 @@ passport.use(
 );
 
 github.get('/auth/github', passport.authenticate("github", { scope: ["user:email"] }), (req, res) =>{
-
+    
+    
     const redirectUrl = `http://localhost:3000/success/${encodeURIComponent(JSON.stringify(req.user))}`;
 
     res.redirect(redirectUrl);
@@ -56,7 +57,7 @@ github.get('/auth/github/callback', passport.authenticate("github", { failureRed
 
 
 github.get("/success", ( req, res)=>{
-    res.redirect("http://localhost:3000/homepage");
+    res.redirect("http://localhost:3000");
 });
 
 module.exports = github;

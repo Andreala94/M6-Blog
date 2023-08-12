@@ -23,7 +23,7 @@ import useSession from "../../middlewares/ProtectedRoutes"
 			saveUserToLocalStorage(token)
 
             setTimeout(() => {
-                navigate('/HomePage')
+                navigate('/')
             }, 3000)
 		}
 	}, [token, navigate, session]);

@@ -3,10 +3,11 @@ import { Modal, Form, Button } from 'react-bootstrap'
 import { FormDataContext } from '../Context/FormDataContex'
 
 
+
 const LoginModal = ({ modalVisible, setModalVisible, onSubmit, showModal }) => {
     const { formData, setFormData } = useContext(FormDataContext)
 
-    console.log(formData)
+    
 
     const handleCloseModal = () => {
         setModalVisible(false)
