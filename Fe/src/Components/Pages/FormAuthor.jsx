@@ -19,6 +19,7 @@ const FormAuthor = () => {
             email: email.current.value,
             password: password.current.value,
             avatar: avatar.current.files[0],
+       
         }
         console.log(data);
         const FormData = async () => {

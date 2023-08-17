@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import CardPosts from './CardPosts'
-import { Col, Container, Row, Button } from 'react-bootstrap'
-import { NewPost } from '../Pages/NewPost'
+import { Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { nanoid } from 'nanoid'
 
 const LastRelase = ({ posts }) => {
-    useEffect(() => {}, [])
+
+    useEffect(() => {
+
+    }, [])
 
     return (
         <>
