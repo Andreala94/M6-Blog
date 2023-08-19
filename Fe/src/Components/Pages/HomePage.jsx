@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Modal, Button } from 'react'
 import NavBar from '../NavBar/NavBar'
 import LastRelase from '../Post/LastRelase'
-import Footer from '../Footer/Footer'
+
 
 function HomePage() {
     const [posts, setPosts] = useState([])

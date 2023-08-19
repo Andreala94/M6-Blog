@@ -8,10 +8,10 @@ Content-Type: application/json
 
 
 {
-    "name": "Andrea",
+    "name": "giovanni",
     "surname": "Lauro",
-    "password": "mamma",
-    "email": "andrea@gmail.com",
+    "password": "ciao",
+    "email": "giovanni@gmail.com",
     "dob": "28/01/1994",
     "avatar": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000"
 }
