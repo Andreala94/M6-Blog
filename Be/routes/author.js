@@ -13,7 +13,6 @@ author.get("/authors", async (request, response) => {
 
         response.status(200).send({
             statusCode: 200,
-
             posts: posts,
         });
     } catch (error) {
@@ -26,16 +25,23 @@ author.get("/authors", async (request, response) => {
 
 })
 
-author.post('/register/authors', Avatar.single("avatar"), async (req, res) => {
-  const salt = await bcrypt.genSalt(10) // per scegliere complessità algoritmo di protezione password.
+author.post('/register/avatarCloud', Avatar.single("avatar"), async (req, res) =>{
+    try {
+        res.status(200).json({avatar: req.file.path})
+    } catch (error) {
+        
+    }
+})
+author.post('/register/authors', async (req, res) => {
+//   const salt = await bcrypt.genSalt(10) // per scegliere complessità algoritmo di protezione password.
 
-  const cryptPassword = await bcrypt.hash(req.body.password, salt)
-
+//   const cryptPassword = await bcrypt.hash(req.body.password, salt)
+console.log(req.body);
 
     const newAuthor = new AuthorModel({
         name: req.body.name,
 		surname: req.body.surname,
-        password: cryptPassword,
+        password: req.body.password,
 		email: req.body.email,
 		dob: req.body.dob,
 		avatar: req.body.avatar,
