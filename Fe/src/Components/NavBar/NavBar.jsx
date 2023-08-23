@@ -19,7 +19,11 @@ const NavBar = ({ HomePage }) => {
     
 
     const showModal = () => {
-        setModalVisible(true)
+        if(getUserToken()=== null){ setModalVisible(true)}
+        else{
+            localStorage.removeItem('userLoggedIn')
+        }
+       
     }
     
  
@@ -42,6 +46,9 @@ const NavBar = ({ HomePage }) => {
            
             localStorage.setItem('userLoggedIn',JSON.stringify(data.token) )
 
+            
+        
+
             return data
             
             
@@ -51,7 +58,11 @@ const NavBar = ({ HomePage }) => {
         }
     }
     
-
+    const getUserToken = () => {
+        console.log(localStorage.getItem('userLoggedIn'));
+       return localStorage.getItem('userLoggedIn')
+        
+    }
     return (
         <>
             <Navbar expand="lg" className="navbar ">
@@ -81,7 +92,8 @@ const NavBar = ({ HomePage }) => {
                             <Button className="bottone">Cerca</Button>
 
                             <Button className="login ms-2 " onClick={showModal}>
-                                Login
+                                
+                                {getUserToken()=== null ? "login" : "logout"}
                             </Button>
                         </Form>
                     </Navbar.Collapse>
