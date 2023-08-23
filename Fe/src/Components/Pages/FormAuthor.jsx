@@ -37,7 +37,8 @@ const FormAuthor = () => {
             }
             const response = await fetch('http://localhost:5050/register/authors', {
                 method: "POST",
-                body: JSON.stringify(formDataWithAvatar)
+                body: JSON.stringify(formDataWithAvatar),
+                headers: {"Content-Type":"application/json"}
             })
         } catch (error) {
             console.log(error);

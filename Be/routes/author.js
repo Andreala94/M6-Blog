@@ -36,7 +36,7 @@ author.post('/register/authors', async (req, res) => {
 //   const salt = await bcrypt.genSalt(10) // per scegliere complessità algoritmo di protezione password.
 
 //   const cryptPassword = await bcrypt.hash(req.body.password, salt)
-console.log(req.body);
+ 
 
     const newAuthor = new AuthorModel({
         name: req.body.name,
