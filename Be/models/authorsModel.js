@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt')
 
 const minlength = [
 	8,
@@ -9,30 +10,28 @@ const AuthorModelSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
+     
     },
     surname: {
       type: String,
-      required: true,
+      
     },
     password: {
       type: String,
-      required: [
-        true,
-        "Password is required and must be at least of 8 characters."]
+     
     },
     email: {
-      type: String,
-      required: true,
+      type: String
+     
     },
 
     avatar: {
-      type: String,
-      required: true,
+      type: String
+      
     },
     dob: {
-      type: String,
-      required: true,
+      type: String
+      
     },
     posts: [
       {

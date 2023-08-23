@@ -13,7 +13,6 @@ author.get("/authors", async (request, response) => {
 
         response.status(200).send({
             statusCode: 200,
-
             posts: posts,
         });
     } catch (error) {
