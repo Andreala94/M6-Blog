@@ -1,3 +1,3 @@
 # M6-Blog
 
-Sito Online: https://animated-pudding-5a64ff.netlify.app
+Sito Online: https://magnificent-parfait-9d753a.netlify.app
